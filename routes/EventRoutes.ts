@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express'
 import express = require("express")
-import { controller } from '.././controllers/EventController'
+import { controller } from '../api/controllers/EventController'
 
 const router = express.Router()
 

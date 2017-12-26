@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express'
 import express = require("express")
-import { controller } from '.././controllers/LendController'
+import { controller } from '../api/controllers/LendController'
 
 const router = express.Router()
 

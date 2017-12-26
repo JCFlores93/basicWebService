@@ -36,6 +36,10 @@ const Schema = new mongoose.Schema({
     amount: {
         type: Number,
         default: ""
+    },
+    location_declared:{
+        type: String,
+        default:"At home"
     }
 })
 
