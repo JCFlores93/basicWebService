@@ -50,4 +50,4 @@ const Schema = new mongoose.Schema({
 //The third paramerte let us to create a collection with a name in singular
 const User = mongoose.model("User", Schema)
 
-export default User
+export { User }
