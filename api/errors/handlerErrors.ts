@@ -20,13 +20,13 @@ const handler = {
 
     general: (error: AnswerError, req: Request, res: Response, next: NextFunction) => {
         let objError: AnswerError
-        objError.name = error.name
+        /*objError.name = error.name
         objError.message = error.message
 
         objError.stack = objError.stack.replace(/[a-z_-\d]+.js:\d+:\d+/gi, '<mark>$&</mark>')
 		objError.stack = objError.stack.replace(/[a-z_-\d]+.ts:\d+:\d+/gi, '<mark>$&</mark>')
 	
-		res.render("error", {error: objError})
+		res.render("error", {error: objError})*/
     
     }
 

@@ -43,8 +43,8 @@ app.use("/lend", routeLend)
 app.use("/event", routeEvent)
 app.use("/auth", routesAuth)
 
-app.use(handler.notFound)
-app.use(handler.general)
+//app.use(handler.notFound)
+//app.use(handler.general)
 
 //Server
 app.listen(4000, () => {

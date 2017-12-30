@@ -1,15 +1,16 @@
 import { Request, Response, NextFunction } from 'express'
 import { User } from '../models/User'
 import { service } from '../services/tokenService'
+var CircularJSON = require("circular-json")
 
 const controller = {
     login: async(req: Request, res: Response, next: NextFunction) => {
-        const usuario = req.body.usuario
-        const contrasena = req.body.contrasena
+        const usuario = req.body.username
+        const contrasena = req.body.password
 
-        const registro: any = User.find({
-            usuario: usuario,
-            contrasena:contrasena
+        const registro: any = await User.find({
+            username: usuario,
+            password:contrasena
         })
 
         if(registro.length > 0){
@@ -18,7 +19,7 @@ const controller = {
                         .status(200)
                         .json(tokens)
         }
-
+        
         return res
                     .status(409)
                     .send("No está autenticado")
@@ -28,15 +29,10 @@ const controller = {
         
     },
     register:async (req: Request, res: Response, next: NextFunction) => {
-        console.log("registro")
         const usuario: any = new User()
         usuario.usuario = req.body.usuario
         usuario.contrasena = req.body.contrasena
-
         const registro = await usuario.save()
-
-        console.log(registro)
-
         const tokens = service.createTokens(registro._id)
         return res 
                     .status(201)
@@ -44,9 +40,6 @@ const controller = {
     },
     newAccessToken:(req: Request, res: Response, next: NextFunction) => {
         const refreshToken = req.body.refreshToken
-
-        console.log("Refresh Token", refreshToken)
-
         const token: any = service.generateNewAccessToken(refreshToken)
 
         if(token.status){
